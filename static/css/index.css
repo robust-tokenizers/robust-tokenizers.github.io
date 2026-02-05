@@ -97,7 +97,7 @@ code {
 .results-table thead th {
   font-weight: 600;
   text-align: center;
-  padding: 0.45rem 0.55rem;
+  padding: 0.35rem 0.45rem;
   border-bottom: 1px solid #555;
   white-space: nowrap;
 }
