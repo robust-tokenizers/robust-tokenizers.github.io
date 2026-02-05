@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="On the Adversarial Robustness of Discrete Image Tokenizers">
+  <meta name="keywords" content="adversarial robustness, discrete tokenizers, vision-language">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>On the Adversarial Robustness of Discrete Image Tokenizers</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/954/954591.png">
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="has-text-centered">
+          <h1 class="title is-1 publication-title">On the Adversarial Robustness of Discrete Image Tokenizers</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><span style="color:#008AD7;font-weight:600;">Rishika Bhagwatkar</span><sup>1</sup></span>,
+              <span class="author-block"><span style="color:#008AD7;font-weight:600;">Irina Rish</span><sup>1</sup></span>,
+              <span class="author-block"><span style="color:#008AD7;font-weight:600;">Nicolas Flammarion</span><sup>2</sup></span>,
+              <span class="author-block"><span style="color:#008AD7;font-weight:600;">Francesco Croce</span><sup>2</sup></span>
+          </div>
+
+          
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><b style="color:#8c1aff;font-weight:normal">&#x25B6 </b>Mila - Quebec AI Institute</span>
+              <span class="author-block"><b style="color:#FF0000;font-weight:normal">&#x25B6 </b>EPFL</span>
+            </div>
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">Correspondence: <a href="mailto:rishika.bhagwatkar@mila.quebec">rishika.bhagwatkar@mila.quebec</a></span>
+            </div>
+
+
+          <div class="has-text-centered">
+            <div class="publication-links">
+              <!-- <span class="link-block">
+                <a href="./paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>Paper (PDF)</span>
+                </a>
+              </span> -->
+
+              <!-- TODO: replace the # links with your actual URLs -->
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Weights</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="quick-nav">
+            <a class="button is-small is-rounded" href="#abstract">Abstract</a>
+            
+            <a class="button is-small is-rounded" href="#attack">Unsupervised Attack</a>
+            <a class="button is-small is-rounded" href="#defense">Unsupervised Adversarial Training</a>
+            <a class="button is-small is-rounded" href="#main-results">Main results</a>
+            <a class="button is-small is-rounded" href="#bibtex">BibTeX</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h4 class="subtitle has-text-centered">
+        This is the first work to systematically study discrete image tokenizers against adversarial attacks and showing that simple, task-agnostic training can make multimodal systems far safer.
+      </h4>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="abstract" style="background-color:#efeff081">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-11">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Discrete image tokenizers encode visual inputs as sequences of tokens from a finite vocabulary and are gaining popularity in multimodal systems, including encoder-only, encoder-decoder, and decoder-only models. However, unlike CLIP encoders, their vulnerability to adversarial attacks has not been explored. Ours being the first work studying this topic, we first formulate attacks that aim to perturb the features extracted by discrete tokenizers, and thus change the extracted tokens. These attacks are computationally efficient, application-agnostic, and effective across classification, multimodal retrieval, and captioning tasks. Second, to defend against this vulnerability, inspired by recent work on robust CLIP encoders, we fine-tune popular tokenizers with unsupervised adversarial training,  keeping all other components frozen. While unsupervised and task-agnostic, our approach significantly improves robustness to both unsupervised and end-to-end supervised attacks and generalizes well to unseen tasks and data. Unlike supervised adversarial training, our approach can leverage unlabeled images, making it more versatile. Overall, our work highlights the critical role of tokenizer robustness in downstream tasks and presents an important step in the development of safe multimodal foundation models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="attack" style="background-color:#ffffff;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-11">
+        <h2 class="title is-3 has-text-centered">Proposed attack</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Idea.</b> Discrete tokenizers map an image to a sequence of visual tokens. If we can induce large
+            changes in the tokenizer’s internal features (and therefore tokens), downstream systems built on top
+            of those tokens—classification, retrieval, captioning, and VQA—can fail.
+          </p>
+
+          <ul>
+            <li><b>Unsupervised:</b> no labels from downstream tasks are needed.</li>
+            <li><b>Inexpensive:</b> attacking the tokenizer is cheaper than attacking the full downstream model.</li>
+            <li><b>Task-agnostic:</b> the attack does not depend on the downstream architecture.</li>
+          </ul>
+        </div>
+
+        <div class="card mt-5">
+          <div class="card-image">
+            <figure class="image">
+              <!-- rename file to avoid spaces/brackets -->
+              <img
+                src="./static/images/attack.png"
+                alt="Overview of the tokenizer-based unsupervised, inexpensive, task-agnostic attack."
+                loading="lazy"
+                style="max-width: 100%; height: auto;"
+              >
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-6">Attack overview</p>
+            <p class="content has-text-justified">
+              We craft an ℓ∞-bounded perturbation to maximize the mismatch between tokenizer features extracted
+              from the clean image and the perturbed image, causing the produced token sequence to drift.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="defense" style="background-color:#efeff081;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-11">
+        <h2 class="title is-3 has-text-centered">Defense</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Robust tokenizers via unsupervised adversarial training.</b>
+            Inspired by robust CLIP-style training, we fine-tune <i>only the tokenizer’s encoder</i>.
+            The objective encourages adversarial embeddings to stay close to clean embeddings, so small input
+            perturbations do not significantly change the tokenizer’s internal representations (and thus the tokens).
+          </p>
+
+          <div class="columns is-variable is-5 mt-4">
+            <div class="column">
+              <div class="box">
+                <p class="title is-6">Defense properties</p>
+                <ul>
+                  <li>Fully unsupervised</li>
+                  <li>Task-agnostic</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="box">
+                <p class="title is-6">Robust tokenizer properties</p>
+                <ul>
+                  <li>Plug-and-play across downstream tasks</li>
+                  <li>Robustness without fine-tuning the full model</li>
+                  <li>Minimally degrades clean performance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-5">
+          <div class="card-image">
+            <figure class="image">
+              <!-- rename file to avoid spaces/brackets -->
+              <img
+                src="./static/images/robust_tokenizers_uat.png"
+                alt="Unsupervised adversarial training objective for robust tokenizers and key properties."
+                loading="lazy"
+                style="max-width: 100%; height: auto;"
+              >
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-6">Defense overview</p>
+            <p class="content has-text-justified">
+              We adversarially fine-tune the tokenizer encoder so that feature representations are stable under
+              bounded perturbations, improving robustness across different downstream systems.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="main-results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-11">
+        <h2 class="title is-3 has-text-centered">Main results</h2>
+
+        <!-- Add The section 4.1 summary -->
+         <div class="content has-text-justified">
+            <p>
+              <b> Robust tokenizers → Robust Embedding Models.</b>
+              We evaluate robustness after swapping the original tokenizer encoder with our
+              <i>unsupervised adversarially fine-tuned</i> version, while keeping the downstream model frozen.
+              For <b>FuseLIP</b> (TiTok-based), robust tokenizers substantially increase adversarial robustness
+              on both <i>classification</i> (Imagenette, Caltech101) and <i>multimodal retrieval</i> (OI-Crop, OI-Pos),
+              and the training radius provides explicit control over the robustness–accuracy trade-off.
+              For <b>UniTok</b>, the same tokenizer-only fine-tuning also improves robustness against end-to-end attacks
+              across Imagenette, Caltech101, and ImageNet.
+            </p>
+          </div>
+
+        <p class="has-text-justified">
+          <b>Table 1.</b> Evaluation of FuseLIP on image classification and multimodal retrieval.
+        </p>
+
+        <div class="table-wrap">
+          <div class="table-container">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th class="tok" rowspan="2">Tokenizer</th>
+
+                  <th class="grp gL" colspan="3">Imagenette</th>
+                  <th class="grp gL" colspan="3">Caltech101</th>
+                  <th class="grp gL" colspan="3">OI-Crop</th>
+                  <th class="grp gL" colspan="3">OI-Pos</th>
+                  <th class="grp gL" colspan="3">Average</th>
+                </tr>
+                <tr>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="tok">clean</td>
+                  <td class="gL">93.6</td><td>2.6</td><td>0.0</td>
+                  <td class="gL">74.4</td><td>0.6</td><td>0.0</td>
+                  <td class="gL">71.8</td><td>7.4</td><td>0.8</td>
+                  <td class="gL">69.2</td><td>5.4</td><td>1.4</td>
+                  <td class="gL">77.3</td><td>4.0</td><td>0.6</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>4/255</sup></td>
+                  <td class="gL">91.8</td><td>63.6</td><td>36.6</td>
+                  <td class="gL">73.0</td><td>48.2</td><td>20.8</td>
+                  <td class="gL">66.2</td><td>50.6</td><td>26.0</td>
+                  <td class="gL">67.2</td><td>46.0</td><td>24.6</td>
+                  <td class="gL">74.6</td><td>52.1</td><td>27.0</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>8/255</sup></td>
+                  <td class="gL">89.6</td><td>69.0</td><td>48.8</td>
+                  <td class="gL">72.4</td><td>51.6</td><td>32.8</td>
+                  <td class="gL">62.0</td><td>48.8</td><td>35.8</td>
+                  <td class="gL">64.8</td><td>51.2</td><td>35.6</td>
+                  <td class="gL">72.2</td><td>55.2</td><td>38.3</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>12/255</sup></td>
+                  <td class="gL">87.0</td><td>71.4</td><td>51.0</td>
+                  <td class="gL">67.6</td><td>51.2</td><td>36.8</td>
+                  <td class="gL">56.2</td><td>49.0</td><td>36.8</td>
+                  <td class="gL">61.6</td><td>49.6</td><td>35.2</td>
+                  <td class="gL">68.1</td><td>55.3</td><td>40.0</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>16/255</sup></td>
+                  <td class="gL">83.4</td><td>66.6</td><td>50.0</td>
+                  <td class="gL">61.2</td><td>47.6</td><td>37.4</td>
+                  <td class="gL">50.0</td><td>47.2</td><td>35.8</td>
+                  <td class="gL">59.4</td><td>48.8</td><td>39.2</td>
+                  <td class="gL">63.5</td><td>52.6</td><td>40.6</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="has-text-justified">
+        <b>Table 2.</b> Evaluation of UniTok on image classification.
+        </p>
+
+        <div class="table-wrap">
+          <div class="table-container">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th class="tok" rowspan="2">Tokenizer</th>
+
+                  <th class="grp gL" colspan="3">Imagenette</th>
+                  <th class="grp gL" colspan="3">Caltech101</th>
+                  <th class="grp gL" colspan="3">ImageNet</th>
+                  <th class="grp gL" colspan="3">Average</th>
+                </tr>
+                <tr>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                  <th class="gL">clean</th><th>2/255</th><th>4/255</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="tok">clean</td>
+                  <td class="gL">99.2</td><td>0.0</td><td>0.0</td>
+                  <td class="gL">85.7</td><td>0.0</td><td>0.0</td>
+                  <td class="gL">67.3</td><td>0.0</td><td>0.0</td>
+                  <td class="gL">84.1</td><td>0.0</td><td>0.0</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>4/255</sup></td>
+                  <td class="gL">99.2</td><td>92.1</td><td>75.0</td>
+                  <td class="gL">81.2</td><td>56.9</td><td>22.4</td>
+                  <td class="gL">66.9</td><td>31.9</td><td>10.5</td>
+                  <td class="gL">82.4</td><td>60.3</td><td>36.0</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>8/255</sup></td>
+                  <td class="gL">97.8</td><td>91.5</td><td>82.7</td>
+                  <td class="gL">77.4</td><td>63.5</td><td>43.9</td>
+                  <td class="gL">58.3</td><td>40.3</td><td>23.6</td>
+                  <td class="gL">77.8</td><td>65.1</td><td>50.1</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>12/255</sup></td>
+                  <td class="gL">95.6</td><td>88.7</td><td>81.4</td>
+                  <td class="gL">72.4</td><td>60.1</td><td>47.6</td>
+                  <td class="gL">50.4</td><td>36.5</td><td>25.6</td>
+                  <td class="gL">72.8</td><td>61.8</td><td>51.5</td>
+                </tr>
+
+                <tr>
+                  <td class="tok">AT<sup>16/255</sup></td>
+                  <td class="gL">92.7</td><td>86.3</td><td>79.6</td>
+                  <td class="gL">65.3</td><td>57.5</td><td>44.6</td>
+                  <td class="gL">42.3</td><td>32.1</td><td>23.6</td>
+                  <td class="gL">66.7</td><td>58.7</td><td>49.3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Add The section 4.2 summary -->
+        <div class="content has-text-justified">
+          <p>
+            <b>Robust tokenizers → Robust Multimodal LLMs.</b>
+            We next study <b>UniTok-MLLM</b> by replacing only the image tokenizer with our robust UniTok variant.
+            On VQA (VQAv2, OK-VQA, GQA), robust tokenizers yield large gains in adversarial accuracy under ℓ∞ attacks.
+            On captioning, both <i>unsupervised targeted</i> (tokenizer-only) and <i>supervised targeted</i> (end-to-end)
+            attacks can steer the original model toward the target caption, while the model with the robust tokenizer
+            stays close to the correct description.
+          </p>
+        </div>
+
+        <!-- Add the table 3 -->
+
+        <div class="content has-text-centered">
+          <h3 class="title is-4">Targeted attacks on captioning</h3>
+          <p class="has-text-justified">
+            The examples below demonstrate targeted attacks: (i) an <b>unsupervised targeted</b> attack that
+            matches the perturbed image’s tokenizer embeddings to a target image, and (ii) a <b>supervised targeted</b>
+            end-to-end attack that optimizes toward a specific target caption. In both cases, the robust tokenizer
+            prevents the model from switching to the target caption.
+          </p>
+        </div>
+
+        <div class="card mb-6">
+          <!-- <div class="column"> -->
+            <!-- <div class="card"> -->
+              <div class="card-image">
+                <figure class="image">
+                  <img
+                    src="./static/images/_unsupervised attack captioning [ICML] (2).png"
+                    alt="Unsupervised targeted attack on captioning (tokenizer-only)."
+                    loading="lazy"
+                    style="max-width: 100%; height: auto;"
+                  >
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">Unsupervised targeted attack</p>
+                <p class="content has-text-justified">
+                  The attack minimizes the embedding distance between a perturbed input and a target image using only
+                  the tokenizer. The original UniTok-MLLM shifts toward the target caption, while the robust tokenizer
+                  preserves a correct, safe caption.
+                </p>
+              </div>
+            <!-- </div> -->
+        </div>
+
+          <!-- <div class="card mb-5"> -->
+            <div class="card mb-6">
+              <div class="card-image">
+                <figure class="image">
+                  <img
+                    src="./static/images/Supervised Attack Captioning [ICML] (1).png"
+                    alt="Supervised targeted attack on captioning (end-to-end)."
+                    loading="lazy"
+                    style="max-width: 100%; height: auto;"
+                  >
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">Supervised targeted attack</p>
+                <p class="content has-text-justified">
+                  The end-to-end attack directly optimizes the image perturbation toward a chosen target caption.
+                  With the original UniTok tokenizer, the model can be forced to output the target caption; swapping in
+                  the robust tokenizer prevents this behavior and keeps captions aligned with the input image.
+                </p>
+              </div>
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+
+</section>
+
+
+
+
+
+
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- TODO: replace with your final BibTeX entry -->
+    <pre><code>
+@misc{robust_tokenizers_2026,
+  title        = {On the Adversarial Robustness of Discrete Image Tokenizers},
+  author       = {Rishika Bhagwatkar, Irina Rish, Nicolas Flammarion, Francesco Croce},
+  year         = {2026},
+  note         = {Preprint},
+}
+    </code></pre>
+  </div>
+</section>
+
+<section class="section" id="acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+      This website template is adapted from popular academic project pages (Bulma-based).
+    </p>
+  </div>
+</section>
+
+</body>
+</html>

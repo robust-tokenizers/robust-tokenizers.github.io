@@ -1,0 +1,152 @@
+/* Minimal Bulma + paper-page styling */
+
+html, body {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  color: #222;
+}
+
+.hero {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.publication-title {
+  font-family: 'Castoro', serif;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.publication-authors {
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.author-block {
+  margin: 0 0.25rem;
+  white-space: nowrap;
+}
+
+.publication-links {
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.link-block {
+  margin: 0.25rem 0.15rem;
+  display: inline-block;
+}
+
+.quick-nav {
+  margin-top: 0.25rem;
+}
+
+.quick-nav .button {
+  margin: 0.15rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: white;
+}
+
+.hero.teaser .subtitle {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.paper-figure {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+.gallery-item {
+  margin-top: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: rgba(0,0,0,0.78);
+}
+
+pre {
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Paper-style results table */
+.table-wrap {
+  margin-top: 0.75rem;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  background: white;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+
+.results-table thead th {
+  font-weight: 600;
+  text-align: center;
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid #555;
+  white-space: nowrap;
+}
+
+.results-table tbody td {
+  padding: 0.45rem 0.55rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.results-table .tok {
+  text-align: left;
+  padding-left: 0.6rem;
+  font-weight: 500;
+}
+
+.results-table .grp {
+  font-weight: 700;
+}
+
+.results-table .gL {
+  border-left: 1.5px solid #555; /* vertical separators between dataset groups */
+}
+
+.results-table tbody tr:not(:last-child) td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Make it scroll on small screens instead of squishing */
+.table-container {
+  overflow-x: auto;
+}
+
+.results-table {
+  table-layout: fixed;         /* prevents content from widening the table */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Make sure the wrapper never lets it exceed the container */
+.table-wrap, .table-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.results-table th {
+  white-space: normal;     /* allow header wrap if needed */
+}
+
+.results-table td {
+  white-space: nowrap;     /* keep numbers on one line */
+}
