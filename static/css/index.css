@@ -150,3 +150,7 @@ code {
 .results-table td {
   white-space: nowrap;     /* keep numbers on one line */
 }
+
+.results-table {
+  font-size: 8pt;
+}
