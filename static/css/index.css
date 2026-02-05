@@ -92,6 +92,8 @@ code {
   background: white;
   border-top: 2px solid #333;
   border-bottom: 2px solid #333;
+  table-layout: fixed;         /* prevents content from widening the table */
+  max-width: 100%;
 }
 
 .results-table thead th {
@@ -99,13 +101,13 @@ code {
   text-align: center;
   padding: 0.25rem 0.25rem;
   border-bottom: 1px solid #555;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .results-table tbody td {
   padding: 0.30rem 0.30rem;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .results-table .tok {
@@ -126,27 +128,9 @@ code {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Make it scroll on small screens instead of squishing */
-.table-container {
-  overflow-x: auto;
-}
-
-.results-table {
-  table-layout: fixed;         /* prevents content from widening the table */
-  width: 100%;
-  max-width: 100%;
-}
 
 /* Make sure the wrapper never lets it exceed the container */
 .table-wrap, .table-container {
   width: 100%;
   max-width: 100%;
-}
-
-.results-table th {
-  white-space: normal;     /* allow header wrap if needed */
-}
-
-.results-table td {
-  white-space: nowrap;     /* keep numbers on one line */
 }
